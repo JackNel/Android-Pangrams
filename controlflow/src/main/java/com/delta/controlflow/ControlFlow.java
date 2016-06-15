@@ -2,6 +2,8 @@ package com.delta.controlflow;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+
 /**
  * Created by learnovate on 2/27/14.
  */
@@ -21,7 +23,17 @@ public class ControlFlow {
         char[] missingLetters = new char[26];
 
         //start here!
+        int numOfMissingLetters = 0;
 
+        for (int i=0; i < alphabet.length; i++) {
+            char letterToFind = alphabet[i];
+            if(!hasLetter(letterToFind, sentenceToTest)) {
+                missingLetters[numOfMissingLetters] = letterToFind;
+                numOfMissingLetters++;
+            }
+        }
+
+        writeSuccess(numOfMissingLetters, missingLetters, sentenceToTest);
 
 
 
@@ -38,6 +50,24 @@ public class ControlFlow {
 
 
 
+    }
+
+    public boolean hasLetter(char aLetter, char[] aSentence) {
+
+        boolean found = false;
+        int position = 0;
+        while (!found) {
+            if (aLetter == aSentence[position]) {
+                found = true;
+            }
+            else if(position == aSentence.length-1) {
+                break;
+            }
+            else {
+                position++;
+            }
+        }
+        return found;
     }
 
 
